@@ -8,7 +8,7 @@ def basic_info():
     # 初期
     config = dict()
     # 【要修正】アクセストークン
-    config["access_token"]         = 'EAAIWrzRNhqMBAOux5jwyrGZAy5nz1BtspwtJFffTOKLppxZB5vgdozU10fT7skuWwQCGtZAWYqLJf7lPYi7CgkZBEBuwAnesI8Y9pZCZANAKFp3s5XhssadsSwQDPGciQ3NZBOC8EkeSUmSpmOlTsYSTsnjolWgFr60r8SCiDFa5JyMMTxdZCIy7'
+    config["access_token"]         = 'EAAIWrzRNhqMBAIbRZB4KdhsZA2YRjQxM7dpDbGegcCJ78YmjIHJXVYwoavnC0xn4kYuRnVJRU22bUBbazhqE68WifaZCJ75tKYszKIBoapPNED15Hn6I1IuMZCh77amMqcK0lmbRyhpCO7pzBEcolDROHk1xpi5w2XQOBhDlJMFtbGQaybvYZBfvnxnkOR5FYVJl6vYyZBh6H20TT4sqoK'
     # 【要修正】アプリID
     config["app_id"]               = '587891706005155'
     # 【要修正】アプリシークレット
@@ -67,4 +67,30 @@ response = debugAT(params)    # レスポンス
 
 # レスポンス
 pprint(response)
-print("no changes")
+
+# インスタグラムユーザー名からフォロワー数を取得
+ig_username = 'take.kanto.golf'
+
+def get_user_media_stats(params, ig_username):
+    """
+    ***********************************************************************************
+    【APIのエンドポイント】
+    "https://graph.facebook.com/v14.0/17841405309211844?fields=business_discovery.username('ig_username'){followers_count,media_count}&access_token={access-token}"
+    ***********************************************************************************
+    """
+    
+    # エンドポイントに送付するパラメータ
+    Params = dict()
+    Params['user_id']      = params['instagram_account_id']
+    Params['access_token'] = params['access_token']
+    Params['fields']       = 'business_discovery.username(' + ig_username + '){followers_count,media_count,media{comments_count,like_count}}'
+    # エンドポイントURL
+    url = params['endpoint_base'] + Params['user_id']
+    # 出力
+    return InstaApiCall(url, Params, 'GET')
+# リクエストパラメータ
+params      = basic_info()                                # リクエストパラメータ
+response    = get_user_media_stats(params, ig_username)   # レスポンス
+
+# 出力
+pprint(response)
