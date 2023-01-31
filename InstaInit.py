@@ -8,7 +8,7 @@ def basic_info():
     # 初期
     config = dict()
     # 【要修正】アクセストークン
-    config["access_token"]         = 'EAAIWrzRNhqMBAIbRZB4KdhsZA2YRjQxM7dpDbGegcCJ78YmjIHJXVYwoavnC0xn4kYuRnVJRU22bUBbazhqE68WifaZCJ75tKYszKIBoapPNED15Hn6I1IuMZCh77amMqcK0lmbRyhpCO7pzBEcolDROHk1xpi5w2XQOBhDlJMFtbGQaybvYZBfvnxnkOR5FYVJl6vYyZBh6H20TT4sqoK'
+    config["access_token"]         = 'EAAIWrzRNhqMBAGFYZCbPwGd279ZA51ZBOBKyI2kDCMrmGEZBdSApHjsR008ia1hzNdGgtMk4WiBMjYpMrYE54HAurZBwIYcPpOYmHVVhxKQz4HCcRhB2pEZAdIOM0TpZB5DbHFLCcTvZApJVnZCZC43XA4g0EOyZB1SrGtKA8wDA5ACn0qhukRLaSMd'
     # 【要修正】アプリID
     config["app_id"]               = '587891706005155'
     # 【要修正】アプリシークレット
@@ -23,11 +23,6 @@ def basic_info():
     config["endpoint_base"]        = config["graph_domain"]+config["version"] + '/'
     # 出力
     return config
-
-    import requests
-import json
-import datetime
-from pprint import pprint
 
 # APIリクエスト用の関数
 def InstaApiCall(url, params, request_type):
@@ -69,7 +64,7 @@ response = debugAT(params)    # レスポンス
 pprint(response)
 
 # インスタグラムユーザー名からフォロワー数を取得
-ig_username = 'take.kanto.golf'
+ig_username = 'nintendo_jp'
 
 def get_user_media_stats(params, ig_username):
     """
